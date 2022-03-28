@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <pre id="conten" dir="rtl"></pre>
+    <script>
+    function reverseRTLchars(text){
+      //Hebrew U+0590 to U+05FF
+      //Arabic U+0600 to U+06FF
+      return text.replace(/([\u0590-\u06FF]+.)+/g, function(m){
+        m = m.split('').reverse();
+        if(/[^\u0590-\u06FF]/.test(m[0])){
+          m.push(m.shift())
+        } 
+        return m.join('');
+      })
+    }
+
+
+    var string = `
+      םלוע םולש! םויה ריואה גזמ המ?
+      ש"פוסה דעו םויהמ: תיקלח ןנועמ דע ריהב
+      תבותכה: ip :), הsubnet: אוה 255.253
+      ב םוי' 28 ץרמ 2022 (ב"פשת)
+    `;
+
+    document.getElementById('conten').innerHTML = string = reverseRTLchars(string);
+    </script>
+  </body>
+</html>
